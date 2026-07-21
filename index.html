@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توقيع التطبيقات | Hassany Store</title>
+    <!-- استدعاء Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* خط عربي مرتب */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        /* حركات الظهور الناعمة */
+        .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col items-center py-10 px-4">
+
+    <!-- شعار واسم المتجر -->
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-purple-500 mb-2">Hassany Store</h1>
+        <p class="text-gray-400">أداة التوقيع الذكية المباشرة (بدون سيرفر)</p>
+    </header>
+
+    <!-- الحاوية الرئيسية -->
+    <main class="w-full max-w-lg bg-gray-800 rounded-2xl shadow-2xl p-6 border border-gray-700">
+        
+        <!-- الخطوة 1: رفع ملف IPA -->
+        <section id="step-1" class="mb-6">
+            <h2 class="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">1. ملف التطبيق</h2>
+            <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-purple-500 rounded-lg cursor-pointer hover:bg-gray-700 transition">
+                <span class="text-purple-400 font-semibold" id="ipa-label-text">📥 اختر ملف IPA</span>
+                <input type="file" id="ipa-input" accept=".ipa" class="hidden" />
+            </label>
+        </section>
+
+        <!-- الخطوة 2: ملفات الشهادة (مخفية بالبداية) -->
+        <section id="step-2" class="mb-6 hidden fade-in">
+            <h2 class="text-lg font-semibold mb-4 border-b border-gray-700 pb-2 text-green-400">2. ملفات الشهادة</h2>
+            
+            <div class="space-y-4">
+                <!-- رفع P12 -->
+                <label class="flex justify-between items-center bg-gray-700 p-3 rounded-lg cursor-pointer hover:bg-gray-600 transition border border-gray-600">
+                    <span id="p12-label-text">إدراج ملف P12</span>
+                    <span class="bg-purple-600 text-white px-3 py-1 rounded text-sm">رفع</span>
+                    <input type="file" id="p12-input" accept=".p12" class="hidden" />
+                </label>
+
+                <!-- رفع Profile -->
+                <label class="flex justify-between items-center bg-gray-700 p-3 rounded-lg cursor-pointer hover:bg-gray-600 transition border border-gray-600">
+                    <span id="prov-label-text">إدراج ملف MobileProvision</span>
+                    <span class="bg-purple-600 text-white px-3 py-1 rounded text-sm">رفع</span>
+                    <input type="file" id="prov-input" accept=".mobileprovision" class="hidden" />
+                </label>
+
+                <!-- باسورد الشهادة -->
+                <input type="text" id="cert-password" placeholder="باسورد ملف P12 (اتركه فارغاً إذا لا يوجد)" class="w-full bg-gray-900 border border-gray-600 rounded-lg p-3 text-white focus:outline-none focus:border-purple-500 transition" />
+            </div>
+        </section>
+
+        <!-- الخطوة 3: زر التوقيع (مخفي بالبداية) -->
+        <section id="step-3" class="hidden fade-in mt-6">
+            <button id="sign-btn" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-105">
+                ✅ توقيع التطبيق الآن
+            </button>
+            <div id="status-text" class="text-center text-sm text-gray-400 mt-3 hidden">جاري المعالجة... يرجى الانتظار</div>
+        </section>
+
+    </main>
+
+    <!-- استدعاء ملف المنطق البرمجي -->
+    <script src="app.js"></script>
+</body>
+</html>
